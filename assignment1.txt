@@ -1,0 +1,59 @@
+package assignmentjava;
+import java.util.Vector;
+import java.util.Enumeration;
+
+public double average() throws NotYetSetException{
+      int count=0;
+      int sum=0
+      Double avg=0
+        Enumeration<CourseRecord> records=getCourseRecords();;
+        while (records.hasMoreElements()){
+            records.nextElement();
+            sum+= records.nextElement();
+            count++;
+        }
+        avg=sum / count;
+        return avg;
+}
+}
+
+
+public void printCourseStudents(){
+        int Counter=0;
+        Enumeration<CourseRecord> records= getCourseRecords();;
+        while (records.hasMoreElements()){
+            System.out.println(++Counter +". "+ records.nextElement().getStudent().getName());
+        }
+}
+
+
+public void printBestStudent(){
+        Student bestStd=new Student(); 
+        Double bestAvg=-1.0; 
+        CourseRecord tempRec;
+        Enumeration<CourseRecord> records= getCourseRecords();
+        while (records.hasMoreElements()){
+            tempRec=records.nextElement();
+            try {
+                if(tempRec.average()>bestAvg){
+                    bestStd=tempRec.getStudent();
+                    bestAvg=tempRec.average();
+                }
+            } catch (NotYetSetException e) {
+                
+            }
+        }
+        System.out.println("Best Student: "+ bestStd.getName()+", Avg: "+bestAvg);
+    }
+
+
+public void printFinalExamStudents(){
+        int Counter=0;
+        CourseRecord current;
+        Enumeration<CourseRecord> records= getCourseRecords();
+        while (records.hasMoreElements()){
+            current= records.nextElement();
+            if(current.canTakeFinalExam())
+                System.out.println(++Counter +". "+currentRec.getStudent().getName());
+        }
+    }
